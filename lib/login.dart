@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/tabs.dart';
+import 'package:shopping_app/strings.dart';
 import 'colors.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,6 +17,8 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState.validate()) {
       print(_usernameController.text);
       print(_passwordController.text);
+      Navigator.pushReplacement(
+          context, new MaterialPageRoute(builder: (context) => new TabsPage()));
     }
   }
 
@@ -46,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
           color: primaryColor,
           child: new Center(
             child: new Text(
-              "Shopping App",
+              title,
               style: TextStyle(
                   color: secondaryColor,
                   fontWeight: FontWeight.bold,
