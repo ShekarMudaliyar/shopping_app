@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/colors.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: primaryColor,
+    );
   }
 }
