@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/tabs.dart';
 import 'package:shopping_app/strings.dart';
 import 'package:shopping_app/vartabs.dart';
 import 'colors.dart';
