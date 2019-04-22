@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/tabs.dart';
 import 'package:shopping_app/strings.dart';
+import 'package:shopping_app/vartabs.dart';
 import 'colors.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -14,12 +15,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   login() {
-    if (_formKey.currentState.validate()) {
-      print(_usernameController.text);
-      print(_passwordController.text);
-      Navigator.pushReplacement(
-          context, new MaterialPageRoute(builder: (context) => new TabsPage()));
-    }
+    // if (_formKey.currentState.validate()) {
+    // print(_usernameController.text);
+    // print(_passwordController.text);
+    Navigator.pushReplacement(
+        context, new MaterialPageRoute(builder: (context) => new VerTabs()));
+    // }
   }
 
   @override
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        color: primaryColor.shade300,
+        color: primaryColor,
         onPressed: fun,
       );
     }

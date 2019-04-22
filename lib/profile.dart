@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:shopping_app/strings.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: new Center(
+        child: new Text(profile),
+      ),
+    );
   }
 }
