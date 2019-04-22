@@ -30,61 +30,67 @@ class _VerTabsState extends State<VerTabs> {
               quarterTurns: 3,
               child: new Text(
                 text,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    wordSpacing: 10.0,
+                    letterSpacing: 8.0),
               ))),
     );
-    var icons = new Column(
-      children: <Widget>[
-        new IconButton(
-          icon: Icon(
-            Icons.home,
-            size: _iconsize,
-          ),
-          onPressed: () {
-            setState(() {
-              _currentIndex = 0;
-              text = title;
-            });
-          },
-        ),
-        new IconButton(
-          icon: Icon(
-            Icons.search,
-            size: _iconsize,
-          ),
-          onPressed: () {
-            setState(() {
-              _currentIndex = 1;
-              text = search;
-            });
-          },
-        ),
-        new IconButton(
-          icon: Icon(
-            Icons.shopping_cart,
-            size: _iconsize,
-          ),
-          onPressed: () {
-            setState(() {
-              _currentIndex = 2;
-              text = cart;
-            });
-          },
-        ),
-        new IconButton(
-          icon: Icon(
-            Icons.person,
-            size: _iconsize,
-          ),
-          onPressed: () {
-            setState(() {
-              _currentIndex = 3;
-              text = profile;
-            });
-          },
-        ),
-      ],
-    );
+    var icons = new Container(
+        margin: EdgeInsets.only(top: 10.0),
+        child: new Column(
+          children: <Widget>[
+            new IconButton(
+              icon: Icon(
+                Icons.home,
+                size: _iconsize,
+              ),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 0;
+                  text = title;
+                });
+              },
+            ),
+            new IconButton(
+              icon: Icon(
+                Icons.search,
+                size: _iconsize,
+              ),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 1;
+                  text = search;
+                });
+              },
+            ),
+            new IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                size: _iconsize,
+              ),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 2;
+                  text = cart;
+                });
+              },
+            ),
+            new IconButton(
+              icon: Icon(
+                Icons.person,
+                size: _iconsize,
+              ),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 3;
+                  text = profile;
+                });
+              },
+            ),
+          ],
+        ));
     return new SafeArea(
       child: new Scaffold(
         body: new Row(

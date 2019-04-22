@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/colors.dart';
+import 'package:shopping_app/productdetail.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,12 +16,18 @@ class _HomePageState extends State<HomePage> {
       color: Colors.white,
       child: new GridView.builder(
         itemCount: 10,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, mainAxisSpacing: 1),
         itemBuilder: (context, i) {
           return new InkWell(
               onTap: () {
                 print(i);
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new ProductDetailPage(
+                              titletext: "PineApple",
+                            )));
               },
               child: new Container(
                 height: height / 4,
@@ -50,10 +57,29 @@ class _HomePageState extends State<HomePage> {
                               color: secondaryColor,
                               borderRadius: BorderRadius.only(
                                   bottomRight: Radius.circular(20.0))),
-                          child: new Text(
-                            'text',
-                            style: TextStyle(color: Colors.black),
-                            textAlign: TextAlign.center,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(left: 5.0),
+                                child: new Text(
+                                  'Pineapple',
+                                  style: TextStyle(
+                                      color: black,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 5.0),
+                                child: new Text(
+                                  '\$10.0',
+                                  style: TextStyle(color: Colors.black),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ],
                           ),
                         )),
                     new Positioned(

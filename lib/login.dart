@@ -47,14 +47,12 @@ class _LoginPageState extends State<LoginPage> {
       height: height / 2,
       width: width,
       child: new Container(
-          color: primaryColor,
+          color: secondaryColor,
           child: new Center(
             child: new Text(
               title,
               style: TextStyle(
-                  color: secondaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0),
+                  color: black, fontWeight: FontWeight.bold, fontSize: 20.0),
             ),
           )),
     );
@@ -62,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
       height: height / 2,
       width: width,
       child: new Container(
-        color: primaryColor,
+        color: secondaryColor,
         child: new Column(
           children: <Widget>[
             new Form(
@@ -85,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       decoration: InputDecoration(
                           hintText: "Email",
-                          hintStyle: TextStyle(color: secondaryColor),
+                          hintStyle: TextStyle(color: black),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: secondaryColor))),
                     ),
@@ -107,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       decoration: InputDecoration(
                           hintText: "Password",
-                          hintStyle: TextStyle(color: secondaryColor),
+                          hintStyle: TextStyle(color: black),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: secondaryColor))),
                     ),
