@@ -1,8 +1,10 @@
 import 'package:square_in_app_payments/in_app_payments.dart';
 import 'package:square_in_app_payments/models.dart';
 
+import 'config.dart';
+
 payment() async {
-  await InAppPayments.setSquareApplicationId('sq0idp-l3UOLMs1155khrVef7SJSA');
+  await InAppPayments.setSquareApplicationId(id);
   await InAppPayments.startCardEntryFlow(
       onCardNonceRequestSuccess: _onCardEntryCardNonceRequestSuccess,
       onCardEntryCancel: _onCancelCardEntryFlow);
