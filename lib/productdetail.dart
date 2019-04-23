@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/cart.dart';
 import 'package:shopping_app/colors.dart';
+import 'package:shopping_app/detail.dart';
+import 'package:shopping_app/review.dart';
 import 'package:shopping_app/strings.dart';
 
 class ProductDetailPage extends StatefulWidget {
@@ -12,13 +15,18 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   double _iconsize = 30.0;
-  @override
+  var _currindex = 0;
+  var _show = true;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var text = widget.detail['name'];
-
+    List<Widget> list = [
+      new Detail(height: height, width: width, detail: widget.detail),
+      new ReviewPage(),
+      new CartPage()
+    ];
     var titleText = new Container(
       margin: EdgeInsets.only(bottom: 20.0),
       child: new Center(
@@ -27,6 +35,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               child: new AutoSizeText(
                 text ?? "",
                 style: TextStyle(
+                    color: mat,
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                     letterSpacing: 8.0),
@@ -40,6 +49,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               icon: Icon(
                 Icons.arrow_back,
                 size: _iconsize,
+                color: mat,
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -47,20 +57,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ),
             new IconButton(
               icon: Icon(
-                Icons.shopping_cart,
+                Icons.rate_review,
                 size: _iconsize,
+                color: mat,
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _currindex = 1;
+                });
+              },
             ),
           ],
         ));
+    var floatingbut = FloatingActionButton(
+      child: new Icon(Icons.shopping_cart),
+      backgroundColor: Color(0xFF383838),
+      foregroundColor: secondaryColor,
+      onPressed: () {
+        setState(() {
+          _show = false;
+          _currindex = 2;
+        });
+      },
+    );
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: new Icon(Icons.shopping_cart),
-          backgroundColor: Color(0xFF383838),
-          foregroundColor: secondaryColor,
-        ),
+        floatingActionButton: _show ? floatingbut : null,
         body: new Row(
           children: <Widget>[
             new Expanded(
@@ -74,41 +96,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ),
               ),
             ),
-            new Expanded(
-              flex: 4,
-              child: new Container(
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                ),
-                child: new Container(
-                  child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      new SizedBox(
-                        height: height / 2,
-                        child: new Image.asset(
-                          widget.detail['image'],
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      new Container(
-                        margin: EdgeInsets.only(left: 10.0, top: 10.0),
-                        child: new Text(
-                          text,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: new Text(
-                            "Quickly ship features with a focus on native end-user experiences. Layered architecture allows for full customization, which results in incredibly fast rendering and expressive and flexible designs."),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
+            new Expanded(flex: 4, child: list[_currindex])
           ],
         ),
       ),

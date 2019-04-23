@@ -32,6 +32,7 @@ class _VerTabsState extends State<VerTabs> {
               child: new AutoSizeText(
                 text,
                 style: TextStyle(
+                    color: mat,
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                     wordSpacing: 10.0,
@@ -46,6 +47,7 @@ class _VerTabsState extends State<VerTabs> {
               icon: Icon(
                 Icons.home,
                 size: _iconsize,
+                color: mat,
               ),
               onPressed: () {
                 setState(() {
@@ -58,6 +60,7 @@ class _VerTabsState extends State<VerTabs> {
               icon: Icon(
                 Icons.search,
                 size: _iconsize,
+                color: mat,
               ),
               onPressed: () {
                 setState(() {
@@ -70,6 +73,7 @@ class _VerTabsState extends State<VerTabs> {
               icon: Icon(
                 Icons.shopping_cart,
                 size: _iconsize,
+                color: mat,
               ),
               onPressed: () {
                 setState(() {
@@ -82,6 +86,7 @@ class _VerTabsState extends State<VerTabs> {
               icon: Icon(
                 Icons.person,
                 size: _iconsize,
+                color: mat,
               ),
               onPressed: () {
                 setState(() {
