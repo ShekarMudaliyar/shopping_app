@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/cart.dart';
 import 'package:shopping_app/colors.dart';
@@ -28,7 +29,7 @@ class _VerTabsState extends State<VerTabs> {
       child: new Center(
           child: new RotatedBox(
               quarterTurns: 3,
-              child: new Text(
+              child: new AutoSizeText(
                 text,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,

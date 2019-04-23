@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/colors.dart';
 import 'package:shopping_app/productdetail.dart';
+import 'list.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,25 +11,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List data = items;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    final double itemHeight = (height) / 2;
+    final double itemWidth = width / 2;
     return Container(
       color: Colors.white,
       child: new GridView.builder(
-        itemCount: 10,
+        itemCount: data.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisSpacing: 1),
+            childAspectRatio: (itemWidth / itemHeight),
+            crossAxisCount: 2,
+            mainAxisSpacing: 1),
         itemBuilder: (context, i) {
           return new InkWell(
               onTap: () {
                 print(i);
                 Navigator.push(
                     context,
-                    new MaterialPageRoute(
+                    new CupertinoPageRoute(
                         builder: (context) => new ProductDetailPage(
-                              titletext: "PineApple",
+                              detail: data[i],
                             )));
               },
               child: new Container(
@@ -42,8 +50,8 @@ class _HomePageState extends State<HomePage> {
                     new Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: new NetworkImage(
-                                  'https://static1.squarespace.com/static/570ea986a3360c29db3c44ec/t/5b43d2c9758d46c3864db607/1531171536238/Pineapple+White+on+Black%2C+Webstie.jpg')),
+                              image: new AssetImage(data[i]['image']),
+                              fit: BoxFit.fitHeight),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20.0),
                               bottomRight: Radius.circular(20.0))),
@@ -63,8 +71,9 @@ class _HomePageState extends State<HomePage> {
                             children: <Widget>[
                               Container(
                                 margin: EdgeInsets.only(left: 5.0),
-                                child: new Text(
-                                  'Pineapple',
+                                child: new AutoSizeText(
+                                  data[i]['name'],
+                                  maxLines: 1,
                                   style: TextStyle(
                                       color: black,
                                       fontWeight: FontWeight.bold),
@@ -74,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 margin: EdgeInsets.only(left: 5.0),
                                 child: new Text(
-                                  '\$10.0',
+                                  '\$${data[i]['price']}',
                                   style: TextStyle(color: Colors.black),
                                   textAlign: TextAlign.left,
                                 ),
@@ -83,21 +92,26 @@ class _HomePageState extends State<HomePage> {
                           ),
                         )),
                     new Positioned(
-                        bottom: 1,
-                        right: 1,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(bottom: 5.0, right: 3.0),
-                          child: new CircleAvatar(
-                              backgroundColor: Colors.white,
-                              foregroundColor: black,
-                              child: new IconButton(
-                                icon: Icon(Icons.shopping_cart),
-                                onPressed: () {
-                                  print('pressed' + i.toString());
-                                },
-                              )),
-                        )),
+                      bottom: 20,
+                      right: 1,
+                      // child: Padding(
+                      // padding:
+                      // const EdgeInsets.only(bottom: 5.0, right: 3.0),
+                      child: new Card(
+                          elevation: 2.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50.0)),
+                          child: new IconButton(
+                            icon: Icon(
+                              Icons.shopping_cart,
+                              color: mat,
+                            ),
+                            onPressed: () {
+                              print('pressed' + i.toString());
+                            },
+                          )),
+                    )
+                    // ),
                   ],
                 ),
               ));

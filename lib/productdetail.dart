@@ -1,10 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/colors.dart';
 import 'package:shopping_app/strings.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  final String titletext;
-  ProductDetailPage({this.titletext});
+  final detail;
+  ProductDetailPage({this.detail});
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
 }
@@ -12,17 +13,18 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
   double _iconsize = 30.0;
   @override
+  @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    var text = widget.titletext;
+    var text = widget.detail['name'];
 
     var titleText = new Container(
       margin: EdgeInsets.only(bottom: 20.0),
       child: new Center(
           child: new RotatedBox(
               quarterTurns: 3,
-              child: new Text(
+              child: new AutoSizeText(
                 text ?? "",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -84,8 +86,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     children: <Widget>[
                       new SizedBox(
                         height: height / 2,
-                        child: new Image.network(
-                          'https://static1.squarespace.com/static/570ea986a3360c29db3c44ec/t/5b43d2c9758d46c3864db607/1531171536238/Pineapple+White+on+Black%2C+Webstie.jpg',
+                        child: new Image.asset(
+                          widget.detail['image'],
                           fit: BoxFit.cover,
                         ),
                       ),
